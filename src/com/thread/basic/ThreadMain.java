@@ -1,4 +1,4 @@
-package com.thread;
+package com.thread.basic;
 
 /**
  * Summary
@@ -40,11 +40,22 @@ public class ThreadMain {
 		Thread runnableThread = new Thread(new RunnableThread());
 		runnableThread.start();
 		
+		// Interrupt custom thread
+//		customThread.interrupt();
+		
 		// Anonymous runnable thread
 		new Thread(new RunnableThread()) {
 			@Override
 			public void run() {
 				System.out.println("Anonymous runnable thread");
+				try {
+					// Wait for customThread to complete, then continue execution of this thread.
+					System.out.println("Waiting for CustomThread to complete execution (max 2000ms)");
+					customThread.join(2000);
+					System.out.println("CustomThread terminated or timed out, so I'm running again");
+				} catch (InterruptedException e) {
+					System.out.println("I couldn't wait after all.  I was interrupted.");
+				}
 			}
 		}.start();
 		

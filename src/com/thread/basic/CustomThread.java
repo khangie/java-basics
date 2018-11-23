@@ -1,4 +1,4 @@
-package com.thread;
+package com.thread.basic;
 
 public class CustomThread extends Thread {
 
@@ -7,12 +7,14 @@ public class CustomThread extends Thread {
 		System.out.println(currentThread().getName() + " - start");
 		
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch(InterruptedException e) {
+			// This exception occurs when the thread is interrupted
 			System.out.println(currentThread().getName() + " - another thread woke me up");
+			return;
 		}
 		
-		System.out.println(currentThread().getName() + " - 3 seconds have passed");
+		System.out.println(currentThread().getName() + " - 5 seconds have passed");
 		
 	}
 
