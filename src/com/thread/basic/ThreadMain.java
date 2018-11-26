@@ -11,6 +11,17 @@ package com.thread.basic;
  * 7) A THREAD created by a PROCESS shares the PROCESS's memory and files
  * 8) This can potentially create conflicts
  * 9) Each THREAD has a THREAD STACK which is memory that only the THREAD can access
+ * 10) A THREAD can be suspended between steps
+ * 11) If two or more THREADS are writing to the same resource, a race condition occurs
+ * 12) Synchronization 
+ *     a) When a method is SYNCHRONIZED, only one METHOD can access it at a time
+ *     b) All other threads that want to call the method will suspend until the method is available
+ *     c) You cannot synchronize CONSTRUCTORS because only one THREAD can construct an instance
+ * 13) Locks 
+ *     a) Every object has an intrinsic LOCK
+ *     b) A thread will need to acquire an object's LOCK before executing a SYNCHRONIZED statement block
+ *     c) PRIMITIVE types DO NOT have an intrinsic lock
+ * 
  * 
  * Best Practices
  * 1) Use an anonymous runnable thread to provide the most flexibility
