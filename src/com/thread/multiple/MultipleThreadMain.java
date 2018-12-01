@@ -28,7 +28,7 @@ class Countdown {
 	// This variable will be shared by all threads which result in thread interference (race condition) if not synchronized
 	private int i;
 	
-	// Adding synchronized will allow only one thread to access the function at a time
+	// Adding "public synchronized void" will allow only one thread to access the function at a time
 	public void doCountdown() {
 		
 		String value = Thread.currentThread().getName();
