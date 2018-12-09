@@ -9,6 +9,7 @@ public abstract class Animal {
 		this.name = name;
 	}
 	
+	// Since all animals breath, these methods should be in an abstract class instead of an interface
 	public abstract void eat();
 	public abstract void breath();
 
