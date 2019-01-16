@@ -1,44 +1,59 @@
 package com.thread.basic;
 
-import java.util.Scanner;
-
-class Processor extends Thread {
-	
-	private boolean running = true;
-	
-	public void run() {
-		
-		while (running) {
-			System.out.println("Hello");
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-	}
-	
-	public void shutdown() {
-		running = false;
-	}
-	
-}
-
 public class ThreadSynchronization {
 
-	public static void main(String[] args) {
-		
-		Processor proc1 = new Processor();
-		proc1.start();
+	private int count = 0;
 	
-		System.out.println("Press return to stop...");
-		Scanner scanner = new Scanner(System.in);
-		scanner.nextLine();
-		
-		proc1.shutdown();
-		
+	public synchronized void increment() {
+		count++;
+	}
+	
+	public static void main(String[] args) {
+
+		ThreadSynchronization app = new ThreadSynchronization();
+		app.doWork();
+
 	}
 
+	public void doWork() {
+		
+		Thread t1 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 0; i < 10000; i++) {
+					increment();
+				}
+				
+			}
+		});
+
+		Thread t2 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 0; i < 10000; i++) {
+					increment();
+				}
+				
+			}
+		});
+		
+		t1.start();
+		t2.start();
+		
+		try {
+			
+			// Join causes the system to wait until the thread has completed
+			t1.join();
+			t2.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Count is: " + count);
+		
+	}
+	
 }
