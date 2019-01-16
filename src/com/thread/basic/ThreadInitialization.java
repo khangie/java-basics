@@ -39,7 +39,7 @@ class Runner2 implements Runnable {
 }
 
 
-public class ThreadDemo {
+public class ThreadInitialization {
 
 	public static void main(String[] args) {
 		
