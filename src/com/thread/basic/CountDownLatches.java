@@ -27,6 +27,8 @@ class Processor1 implements Runnable {
 			e.printStackTrace();
 		}
 		
+		System.out.println("Done.");
+		
 		// Thread will decrement the countdown
 		latch.countDown();
 		
@@ -49,6 +51,8 @@ public class CountDownLatches {
 			executor.submit(new Processor1(latch));
 		}
 	
+		executor.shutdown();
+		
 		try {
 			// Waits for CountDownLatch to reach zero
 			latch.await();
