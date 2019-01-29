@@ -1,4 +1,4 @@
-package com.thread.basic;
+package com.thread.old;
 
 public class RunnableThread implements Runnable {
 
